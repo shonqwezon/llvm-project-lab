@@ -19,8 +19,9 @@ cmake --build .
 2. Указыаем путь до собранного llvm в env `LLVM_BUILD_DIR`
 3. Собираем (из llvm-build-release) нужный нам плагин с тестированием:
 ```
-cmake --build . --target check-PrintUserTypeInfo
+cmake --build $LLVM_BUILD_DIR --target check-PrintUserTypeInfo
 ```
+![pic2](pics/lab01/tests.png)
 3. Запускаем плагин
 ```
 $LLVM_BUILD_DIR/bin/clang++ \
@@ -28,3 +29,4 @@ $LLVM_BUILD_DIR/bin/clang++ \
   -Xclang -plugin -Xclang print-user-type-info \
   test.cpp -c
 ```
+![pic1](pics/lab01/plugin.png)
