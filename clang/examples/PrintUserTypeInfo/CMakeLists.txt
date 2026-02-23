@@ -13,3 +13,11 @@ if(WIN32 OR CYGWIN)
     clangFrontend
   )
 endif()
+
+if(BUILD_TESTING)
+  add_lit_testsuite(check-PrintUserTypeInfo
+    "Running PrintUserTypeInfo plugin tests"
+    ${CMAKE_CURRENT_SOURCE_DIR}/test
+    DEPENDS PrintUserTypeInfo
+  )
+endif()
