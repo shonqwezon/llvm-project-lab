@@ -15,18 +15,18 @@ cmake --build .
 ```
 
 ## Сборка и запуск плагина
-1. Аналогично сборке проекта нужно так же обновить targets, только добавив ещё флаг `-DBUILD_TESTING=ON` для добавления тестов нашему плагину
-2. Указыаем путь до собранного llvm в env `LLVM_BUILD_DIR`
-3. Собираем (из llvm-build-release) нужный нам плагин с тестированием:
+1. Добавляем путь до `opt` в переменные окружения
 ```
-cmake --build $LLVM_BUILD_DIR --target check-PrintUserTypeInfo
+export PATH=$PATH:~/llvm-lab/llvm-build-release/bin
 ```
-![pic2](pics/lab01/tests.png)
-3. Запускаем плагин
+2. Проверяем тесты через ручной запуск
 ```
-$LLVM_BUILD_DIR/bin/clang++ \
-  -Xclang -load -Xclang $LLVM_BUILD_DIR/lib/PrintUserTypeInfo.so \
-  -Xclang -plugin -Xclang print-user-type-info \
-  test.cpp -c
+cd ~/llvm-lab/llvm-project-lab/llvm/test/Instrumentation/FunсInstr
+opt -passes=function-instrumentation -S simple-func.ll | FileCheck simple-func.ll
 ```
-![pic1](pics/lab01/plugin.png)
+![pic1](pics/pic1.png)
+3. Либо через lit
+```
+llvm-lit ~/llvm-lab/llvm-project-lab/llvm/test/Instrumentation/FunсInstr/
+```
+![pic2](pics/pic2.png)
