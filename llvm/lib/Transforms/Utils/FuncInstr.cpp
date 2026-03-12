@@ -12,7 +12,6 @@ PreservedAnalyses FuncInstrPass::run(Function &func, FunctionAnalysisManager &fu
     if (func.isDeclaration())
         return PreservedAnalyses::all(); // пропускаем extern функции
 
-    bool changed = false;
     Module *module = func.getParent();
     LLVMContext &context = module->getContext();
 
@@ -35,8 +34,7 @@ PreservedAnalyses FuncInstrPass::run(Function &func, FunctionAnalysisManager &fu
         }
     }
 
-    changed = true;
-    return changed ? PreservedAnalyses::none() : PreservedAnalyses::all();
+    return PreservedAnalyses::all();
 }
 
 }

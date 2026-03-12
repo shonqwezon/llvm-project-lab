@@ -11,7 +11,7 @@ cmake ../llvm-project-lab/llvm   \
 ```
 2. Запускаем сборку всех таргетов из исходников
 ```sh
-cmake --build .
+cmake --build . --target opt
 ```
 
 ## Сборка и запуск плагина
